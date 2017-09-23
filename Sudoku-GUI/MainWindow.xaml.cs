@@ -44,11 +44,47 @@ namespace Sudoku_GUI
                         MyGrid.Children.Add(puzzleArray[i, j]);
                         Grid.SetRow(puzzleArray[i, j], i);
                         Grid.SetColumn(puzzleArray[i, j], j);
-                        puzzleArray[i, j].Text = puzzle[i, j].ToString();
                         puzzleArray[i, j].FontSize = 30;
-                        puzzleArray[i, j].FontWeight = FontWeights.Bold;
                         puzzleArray[i, j].HorizontalContentAlignment = HorizontalAlignment.Center;
                         puzzleArray[i, j].VerticalContentAlignment = VerticalAlignment.Center;
+                        puzzleArray[i, j].BorderBrush = Brushes.Black;
+
+                        if (puzzle[i, j] != 0)
+                        {
+                            // 未挖空的数字显示为数字，只读，并加粗
+                            puzzleArray[i, j].IsReadOnly = true;
+                            puzzleArray[i, j].Text = puzzle[i, j].ToString();
+                            puzzleArray[i, j].FontWeight = FontWeights.Bold;
+                        }
+
+                        // 加粗小宫格的边框
+                        if (i % 3 == 0)
+                        {
+                            if (j % 3 == 0)
+                                puzzleArray[i, j].BorderThickness = new Thickness(2.5, 2.5, 1.5, 1.5);
+                            else if (j % 3 == 2)
+                                puzzleArray[i, j].BorderThickness = new Thickness(1.5, 2.5, 2.5, 1.5);
+                            else
+                                puzzleArray[i, j].BorderThickness = new Thickness(1.5, 2.5, 1.5, 1.5);
+                        }
+                        else if (i % 3 == 2)
+                        {
+                            if (j % 3 == 0)
+                                puzzleArray[i, j].BorderThickness = new Thickness(2.5, 1.5, 1.5, 2.5);
+                            else if (j % 3 == 2)
+                                puzzleArray[i, j].BorderThickness = new Thickness(1.5, 1.5, 2.5, 2.5);
+                            else
+                                puzzleArray[i, j].BorderThickness = new Thickness(1.5, 2.5, 1.5, 2.5);
+                        }
+                        else
+                        {
+                            if (j % 3 == 0)
+                                puzzleArray[i, j].BorderThickness = new Thickness(2.5, 1.5, 1.5, 1.5);
+                            else if (j % 3 == 2)
+                                puzzleArray[i, j].BorderThickness = new Thickness(1.5, 1.5, 2.5, 1.5);
+                            else
+                                puzzleArray[i, j].BorderThickness = new Thickness(1.5, 2.5, 1.5, 1.5);
+                        }
                     }
                 }
             }
