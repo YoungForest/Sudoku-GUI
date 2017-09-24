@@ -168,6 +168,7 @@ namespace Sudoku_GUI
                     if (real == false)
                     {
                         MessageBox.Show(String.Format("Not a right answer; check mistake at ({0}, {1})", i + 1, j + 1));
+                        return;
                     }
                 }
             }
